@@ -1,0 +1,50 @@
+[
+  {
+    "codigo": "OE0001",
+    "descripcion": "EXCAVACIÓN DE CALICATA PARA VERIFICACIÓN 0.00 A 1.50 M",
+    "unidad": "CALICATA",
+    "costo": 60.0
+  },
+  {
+    "codigo": "OP0002",
+    "descripcion": "PERFIL ESTRATIGRÁFICO CON ENSAYOS DE LABORATORIO",
+    "unidad": "CALICATA",
+    "costo": 100.0
+  },
+  {
+    "codigo": "OC0003",
+    "descripcion": "CBR (INCLUYE PROCTOR MODIFICADO Y/O ESTANDAR)",
+    "unidad": "MUESTRA",
+    "costo": 250.0
+  },
+  {
+    "codigo": "OC0004",
+    "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)",
+    "unidad": "MUESTRA",
+    "costo": 100.0
+  },
+  {
+    "codigo": "OE0012",
+    "descripcion": "ENSAYO GEOFÍSICO-LÍNEA SISMICA (REFRACCIÓN) HASTA 75M",
+    "unidad": "LÍNEA",
+    "costo": 3000.0
+  },
+  {
+    "codigo": "OC0026",
+    "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)",
+    "unidad": "MUESTRA",
+    "costo": 120.0
+  },
+  {
+    "codigo": "OE0044",
+    "descripcion": "ENSAYO DE CORTE DIRECTO (SUELOS)",
+    "unidad": "MUESTRA",
+    "costo": 260.0
+  },
+  {
+    "codigo": "OT0025",
+    "descripcion": "TEST DE PERCOLACIÓN",
+    "unidad": "PUNTO",
+    "costo": 50.0
+  }
+]

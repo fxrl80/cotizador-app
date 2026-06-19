@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SoilTest Perú - Cotización</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(161, 28, 43, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 10px 4px rgba(161, 28, 43, 0.4);
+            }
+        }
+
+        @keyframes ambient-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .animate-fade-in-up {
+                animation: fade-in-up 0.5s ease-out forwards;
+                opacity: 0;
+            }
+            .stagger-1 { animation-delay: 0.1s; }
+            .stagger-2 { animation-delay: 0.2s; }
+            .stagger-3 { animation-delay: 0.3s; }
+            .stagger-4 { animation-delay: 0.4s; }
+            
+            .animate-pulse-glow {
+                animation: pulse-glow 2s infinite;
+            }
+
+            .ambient-bg {
+                background: linear-gradient(-45deg, #fff8f7, #ffe9e8, #fce2e1, #fff0ef);
+                background-size: 400% 400%;
+                animation: ambient-gradient 15s ease infinite;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in-up {
+                opacity: 1;
+            }
+            .ambient-bg {
+                background-color: #fff8f7;
+            }
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#e1bebd",
+                        "on-background": "#261818",
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#fce2e1",
+                        "surface-bright": "#fff8f7",
+                        "tertiary": "#3a3c3c",
+                        "on-primary-fixed-variant": "#8f0b20",
+                        "on-tertiary-container": "#c6c7c7",
+                        "inverse-surface": "#3c2d2c",
+                        "primary-fixed-dim": "#ffb3b2",
+                        "primary": "#7e0018",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#636262",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fff8f7",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "secondary-container": "#e2dfde",
+                        "tertiary-fixed": "#e2e2e2",
+                        "surface-container": "#ffe9e8",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#f6dddb",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "tertiary-container": "#515353",
+                        "on-primary-fixed": "#410008",
+                        "background": "#fff8f7",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "secondary-fixed": "#e5e2e1",
+                        "secondary": "#5f5e5e",
+                        "surface-container-low": "#fff0ef",
+                        "primary-fixed": "#ffdad8",
+                        "on-surface-variant": "#594140",
+                        "surface-dim": "#edd4d3",
+                        "on-secondary-fixed-variant": "#474746",
+                        "inverse-primary": "#ffb3b2",
+                        "on-primary-container": "#ffb3b2",
+                        "primary-container": "#a11c2b",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#b12935",
+                        "surface-container-highest": "#f6dddb",
+                        "inverse-on-surface": "#ffedeb",
+                        "outline": "#8d706f",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "on-surface": "#261818",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "table-cell-padding": "12px 16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter", "sans-serif"],
+                        "data-table": ["JetBrains Mono", "monospace"],
+                        "headline-md": ["Space Grotesk", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "display-lg": ["Space Grotesk", "sans-serif"],
+                        "label-caps": ["Space Grotesk", "sans-serif"],
+                        "headline-lg": ["Space Grotesk", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "data-table": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden ambient-bg">
+<!-- JSON Anchor: SideNavBar -->
+<nav class="flex flex-col h-screen py-4 w-64 bg-surface-container-low/90 backdrop-blur-sm dark:bg-surface-container-lowest/90 border-r-2 border-on-surface dark:border-outline flex-shrink-0 z-10 hidden md:flex">
+<!-- Header -->
+<div class="px-6 mb-8 flex flex-col gap-2">
+<h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed leading-tight tracking-tight">Filtros Técnicos</h2>
+<p class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface">Laboratorio de Suelos</p>
+</div>
+<!-- Navigation Links -->
+<ul class="flex-1 flex flex-col px-4 gap-2">
+<!-- Inactive -->
+<li class="animate-fade-in-up stagger-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant dark:text-tertiary-fixed hover:bg-secondary-container dark:hover:bg-secondary hover:scale-105 duration-200 ease-out font-body-md text-body-md rounded-md transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="">Origen de Proyecto</span>
+</a>
+</li>
+<li class="animate-fade-in-up stagger-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant dark:text-tertiary-fixed hover:bg-secondary-container dark:hover:bg-secondary hover:scale-105 duration-200 ease-out font-body-md text-body-md rounded-md transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="construction">construction</span>
+<span class="">Tipo de Obra</span>
+</a>
+</li>
+<li class="animate-fade-in-up stagger-3">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant dark:text-tertiary-fixed hover:bg-secondary-container dark:hover:bg-secondary hover:scale-105 duration-200 ease-out font-body-md text-body-md rounded-md transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="">Situación</span>
+</a>
+</li>
+<!-- Active State -->
+<li class="animate-fade-in-up stagger-4">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-on-primary font-bold hover:scale-105 duration-200 ease-out font-body-md text-body-md shadow-md rounded-md transition-all" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="science">science</span>
+<span class="">Tipo de Servicio</span>
+</a>
+</li>
+</ul>
+<!-- CTA -->
+<div class="px-6 mt-auto">
+<button class="w-full py-3 bg-primary-container text-on-primary font-headline-md text-sm tracking-wider uppercase rounded-none border-b-2 border-primary hover:bg-surface-tint hover:scale-105 transition-all duration-200 ease-out shadow-sm hover:shadow-md animate-pulse-glow">
+                Nuevo Reporte
+            </button>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col min-w-0 bg-transparent relative">
+<!-- JSON Anchor: TopNavBar (small) -->
+<header class="flex justify-between items-center w-full px-6 h-16 bg-surface/80 backdrop-blur-md dark:bg-surface-dim/80 border-b-2 border-on-surface dark:border-outline flex-shrink-0 z-10">
+<div class="flex items-center gap-4">
+<img alt="SoilTest Logo" class="h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpg_z_SaFZtiJHX4F8M7b6y8jZn-VrpClMpfrVMuNc5Z93_S4_9pTPHhboRbdC9KHhccBmsaTNMQnZLFamzE8Php3lmKNso6EjQazSgFN1cESyV27MRc6aBEx4SurQCsymwG8ck0Z9k6jwzBvMJXdCcrYrV7shJvIvINotsnDGmT6_TcvjzKFYH_LfUcapv2HNCZMswQNNbpfWB_tRqoagtMzSMUTNzLuWbWx0P5wOpbhcOJGIQiXHbOJkTk4wGxZKxn0ysH6h0xJi4TI"/>
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed tracking-tight">SoilTest Perú</span>
+</div>
+<div class="flex items-center gap-6">
+<!-- Actions -->
+<div class="flex items-center gap-4 hidden sm:flex">
+<button class="px-4 py-2 bg-transparent border-2 border-on-surface text-on-surface font-headline-md text-sm uppercase tracking-wider hover:bg-surface-container hover:scale-105 transition-all duration-200">
+                        Exportar
+                    </button>
+<button class="px-4 py-2 bg-primary-container text-on-primary font-headline-md text-sm uppercase tracking-wider border-b-2 border-primary hover:bg-surface-tint hover:scale-105 transition-all duration-200 animate-pulse-glow rounded-sm">
+                        Guardar
+                    </button>
+</div>
+<!-- Icons -->
+<div class="flex items-center gap-4 border-l-2 border-outline-variant pl-6">
+<button class="text-on-surface hover:text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface hover:text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Area Split -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left: Form & Table -->
+<div class="flex-1 overflow-y-auto p-gutter lg:p-8 flex flex-col gap-8 bg-transparent">
+<!-- Section Header -->
+<div class="animate-fade-in-up stagger-1">
+<h1 class="font-headline-lg text-headline-lg font-bold text-on-surface uppercase tracking-tight">Cotización Técnica</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Categoría: EMS - VIVIENDAS (B.3)</p>
+</div>
+<!-- Datos Generales Card -->
+<section class="bg-white/90 backdrop-blur-sm border border-on-surface p-6 relative animate-fade-in-up stagger-2 shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container"></div>
+<h3 class="font-headline-md text-headline-md uppercase tracking-wider text-on-surface border-b border-outline-variant pb-2 mb-6">Datos Generales</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="flex flex-col gap-2 group">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant group-focus-within:text-primary transition-colors">Cliente / Empresa</label>
+<input class="w-full px-3 py-2 bg-transparent border border-on-surface text-on-surface font-body-md focus:outline-none focus:border-2 focus:border-primary-container transition-all" type="text" value="Constructora Andes S.A.C."/>
+</div>
+<div class="flex flex-col gap-2 group">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant group-focus-within:text-primary transition-colors">Proyecto</label>
+<input class="w-full px-3 py-2 bg-transparent border border-on-surface text-on-surface font-body-md focus:outline-none focus:border-2 focus:border-primary-container transition-all" type="text" value="Residencial Las Lomas - Etapa 1"/>
+</div>
+<div class="flex flex-col gap-2 group">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant group-focus-within:text-primary transition-colors">Ubicación Muestreo</label>
+<input class="w-full px-3 py-2 bg-transparent border border-on-surface text-on-surface font-body-md focus:outline-none focus:border-2 focus:border-primary-container transition-all" type="text" value="San Isidro, Lima"/>
+</div>
+<div class="flex flex-col gap-2 group">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant group-focus-within:text-primary transition-colors">Fecha Solicitud</label>
+<input class="w-full px-3 py-2 bg-transparent border border-on-surface text-on-surface font-data-table focus:outline-none focus:border-2 focus:border-primary-container transition-all" type="date" value="2024-05-15"/>
+</div>
+</div>
+</section>
+<!-- Items de Cotización Table -->
+<section class="flex flex-col border border-on-surface bg-white/90 backdrop-blur-sm animate-fade-in-up stagger-3 shadow-sm hover:shadow-md transition-shadow duration-300">
+<div class="bg-inverse-surface px-4 py-3 flex justify-between items-center border-b-2 border-primary-container">
+<h3 class="font-headline-md text-on-primary uppercase tracking-wider text-sm font-bold">Ítems de Ensayo (EMS - Viviendas)</h3>
+<button class="text-on-primary hover:text-primary-fixed-dim hover:scale-105 transition-all flex items-center gap-1 font-label-caps text-label-caps" id="add-ensayo-btn">
+<span class="material-symbols-outlined text-[18px]">add</span> Añadir Ensayo
+                        </button>
+</div>
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-variant border-b border-on-surface text-on-surface">
+<th class="p-table-cell-padding font-label-caps text-label-caps uppercase w-16">Código</th>
+<th class="p-table-cell-padding font-label-caps text-label-caps uppercase">Descripción del Ensayo</th>
+<th class="p-table-cell-padding font-label-caps text-label-caps uppercase text-right w-24">Cant.</th>
+<th class="p-table-cell-padding font-label-caps text-label-caps uppercase text-right w-32">P. Unitario (S/)</th>
+<th class="p-table-cell-padding font-label-caps text-label-caps uppercase text-right w-32">Subtotal (S/)</th>
+<th class="p-table-cell-padding font-label-caps text-label-caps uppercase text-center w-16">Acciones</th>
+</tr>
+</thead>
+<tbody class="font-data-table text-data-table text-on-surface divide-y divide-outline-variant" id="ensayos-tbody">
+<!-- Rows will be rendered here via JS -->
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Sidebar: Summary Panel -->
+<aside class="w-80 lg:w-96 bg-surface-container/90 backdrop-blur-sm border-l-2 border-on-surface flex flex-col flex-shrink-0 z-0 animate-fade-in-up stagger-4">
+<div class="p-6 border-b border-outline-variant bg-surface/80">
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface uppercase">Resumen Financiero</h3>
+</div>
+<div class="p-6 flex flex-col gap-8 flex-1 overflow-y-auto">
+<!-- Status / Filters -->
+<div class="hover:-translate-y-1 transition-transform duration-300">
+<p class="font-label-caps text-label-caps uppercase text-on-surface-variant mb-3">Parámetros Activos</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-surface border border-outline text-on-surface font-label-caps text-[10px] uppercase hover:bg-surface-variant transition-colors cursor-default">
+<span class="material-symbols-outlined text-[14px]">science</span> EMS Viviendas
+                            </span>
+<span class="inline-flex items-center gap-1 px-2 py-1 bg-surface border border-outline text-on-surface font-label-caps text-[10px] uppercase hover:bg-surface-variant transition-colors cursor-default">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Zona Urbana
+                            </span>
+</div>
+</div>
+<!-- Calculation Block -->
+<div class="bg-white/90 border border-on-surface p-4 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow duration-300 hover:-translate-y-1">
+<div class="flex justify-between items-center font-data-table text-data-table text-on-surface">
+<span class="">Subtotal de Ensayos</span>
+<span class="" id="summary-subtotal">S/ 0.00</span>
+</div>
+<div class="flex justify-between items-center font-data-table text-data-table text-on-surface">
+<span class="">Descuento Comercial (0%)</span>
+<span class="">S/ 0.00</span>
+</div>
+<div class="flex justify-between items-center font-data-table text-data-table text-on-surface border-t border-dashed border-outline-variant pt-4">
+<span class="">Base Imponible</span>
+<span class="" id="summary-base">S/ 0.00</span>
+</div>
+<div class="flex justify-between items-center font-data-table text-data-table text-on-surface-variant">
+<span class="">IGV (18%)</span>
+<span class="" id="summary-igv">S/ 0.00</span>
+</div>
+<!-- Grand Total -->
+<div class="mt-2 pt-4 border-t-2 border-on-surface flex justify-between items-end">
+<span class="font-headline-md text-sm uppercase font-bold text-on-surface">Total Final</span>
+<span class="font-data-table text-lg font-bold text-primary-container" id="summary-total">S/ 0.00</span>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 bg-surface/80 border-t border-outline-variant flex flex-col gap-3">
+<button class="w-full py-3 bg-primary-container text-on-primary font-headline-md text-sm uppercase tracking-wider border-b-2 border-primary hover:bg-surface-tint hover:scale-105 transition-all duration-200 ease-out animate-pulse-glow flex justify-center items-center gap-2 rounded-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">description</span> Generar PDF
+                    </button>
+<button class="w-full py-3 bg-transparent border-2 border-on-surface text-on-surface font-headline-md text-sm uppercase tracking-wider hover:bg-surface-container hover:scale-105 transition-all duration-200 rounded-sm">
+                        Enviar a Aprobación
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- Modal Selector de Ensayos -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300" id="ensayos-modal">
+<div class="bg-surface border-2 border-on-surface w-full max-w-2xl max-h-[80vh] flex flex-col shadow-xl transform scale-95 transition-transform duration-300" id="ensayos-modal-content">
+<div class="bg-primary-container px-6 py-4 flex justify-between items-center border-b-2 border-on-surface">
+<h3 class="font-headline-md text-on-primary uppercase tracking-wider text-lg font-bold">Catálogo de Ensayos (B.3)</h3>
+<button class="text-on-primary hover:text-primary-fixed-dim transition-colors" id="close-modal-btn">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-4 border-b border-outline-variant bg-surface-variant flex gap-4">
+<input class="flex-1 px-4 py-2 bg-white border border-on-surface text-on-surface font-body-md focus:outline-none focus:border-2 focus:border-primary-container transition-all rounded-none" id="search-ensayo" placeholder="Buscar ensayo por código o descripción..." type="text"/>
+</div>
+<div class="flex-1 overflow-y-auto p-4 bg-surface">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-on-surface text-on-surface">
+<th class="p-2 font-label-caps text-label-caps uppercase w-16">Código</th>
+<th class="p-2 font-label-caps text-label-caps uppercase">Descripción</th>
+<th class="p-2 font-label-caps text-label-caps uppercase text-right w-24">Precio</th>
+<th class="p-2 font-label-caps text-label-caps uppercase text-center w-16">Acción</th>
+</tr>
+</thead>
+<tbody class="font-data-table text-sm text-on-surface divide-y divide-outline-variant" id="db-ensayos-list">
+<!-- Populated by JS -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script>
+    // Base de datos simulada (B.3 EMS - VIVIENDAS)
+    const dbEnsayos = [
+        { codigo: "E-001", descripcion: "Contenido de Humedad Natural (NTP 339.127)", precio: 15.00 },
+        { codigo: "E-002", descripcion: "Peso Volumétrico", precio: 25.00 },
+        { codigo: "E-003", descripcion: "Gravedad Específica de Sólidos", precio: 30.00 },
+        { codigo: "E-004", descripcion: "Clasificación SUCS", precio: 15.00 },
+        { codigo: "E-005", descripcion: "Análisis Granulométrico por Tamizado (NTP 339.128)", precio: 45.00 },
+        { codigo: "E-008", descripcion: "Límites de Atterberg (Líquido y Plástico)", precio: 55.00 },
+        { codigo: "E-009", descripcion: "Proctor Modificado", precio: 120.00 },
+        { codigo: "E-010", descripcion: "CBR (California Bearing Ratio)", precio: 250.00 },
+        { codigo: "E-022", descripcion: "Ensayo de Corte Directo - Suelo Cohesivo", precio: 180.00 }
+    ];
+
+    // Estado inicial de la tabla (ítems seleccionados)
+    let ensayosSeleccionados = [
+        { id: 1, codigo: "E-001", descripcion: "Contenido de Humedad Natural (NTP 339.127)", precio: 15.00, cantidad: 12 },
+        { id: 2, codigo: "E-005", descripcion: "Análisis Granulométrico por Tamizado (NTP 339.128)", precio: 45.00, cantidad: 6 },
+        { id: 3, codigo: "E-008", descripcion: "Límites de Atterberg (Líquido y Plástico)", precio: 55.00, cantidad: 6 },
+        { id: 4, codigo: "E-022", descripcion: "Ensayo de Corte Directo - Suelo Cohesivo", precio: 180.00, cantidad: 2 }
+    ];
+    let nextId = 5;
+
+    // Referencias DOM
+    const tbody = document.getElementById('ensayos-tbody');
+    const summarySubtotal = document.getElementById('summary-subtotal');
+    const summaryBase = document.getElementById('summary-base');
+    const summaryIgv = document.getElementById('summary-igv');
+    const summaryTotal = document.getElementById('summary-total');
+    const modal = document.getElementById('ensayos-modal');
+    const modalContent = document.getElementById('ensayos-modal-content');
+    const dbList = document.getElementById('db-ensayos-list');
+    const searchInput = document.getElementById('search-ensayo');
+
+    // Función para formatear moneda
+    const formatMoney = (amount) => `S/ ${amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`;
+
+    // Renderizar tabla principal
+    function renderTabla() {
+        tbody.innerHTML = '';
+        let subtotalGeneral = 0;
+
+        ensayosSeleccionados.forEach((item, index) => {
+            const subtotal = item.precio * item.cantidad;
+            subtotalGeneral += subtotal;
+            
+            const tr = document.createElement('tr');
+            tr.className = `hover:bg-surface-container hover:scale-[1.01] transform transition-all duration-200 group ${index % 2 !== 0 ? 'bg-[#F4F4F4]/50' : ''}`;
+            
+            tr.innerHTML = `
+                <td class="p-table-cell-padding font-bold group-hover:text-primary transition-colors">${item.codigo}</td>
+                <td class="p-table-cell-padding font-body-md text-sm">${item.descripcion}</td>
+                <td class="p-table-cell-padding text-right">
+                    <input class="w-16 text-right bg-transparent border-b border-outline focus:border-primary-container focus:outline-none transition-colors qty-input" 
+                           type="number" min="1" data-id="${item.id}" value="${item.cantidad}">
+                </td>
+                <td class="p-table-cell-padding text-right">${item.precio.toFixed(2)}</td>
+                <td class="p-table-cell-padding text-right font-bold group-hover:text-primary transition-colors">${subtotal.toFixed(2)}</td>
+                <td class="p-table-cell-padding text-center">
+                    <button class="text-on-surface-variant hover:text-error transition-colors delete-btn" data-id="${item.id}">
+                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // Event listeners para los inputs de cantidad
+        document.querySelectorAll('.qty-input').forEach(input => {
+            input.addEventListener('input', (e) => {
+                const id = parseInt(e.target.dataset.id);
+                const newQty = parseInt(e.target.value) || 0;
+                const index = ensayosSeleccionados.findIndex(i => i.id === id);
+                if (index > -1) {
+                    ensayosSeleccionados[index].cantidad = newQty;
+                    renderTabla();
+                }
+            });
+        });
+
+        // Event listeners para eliminar
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(e.currentTarget.dataset.id);
+                ensayosSeleccionados = ensayosSeleccionados.filter(i => i.id !== id);
+                renderTabla();
+            });
+        });
+
+        actualizarResumen(subtotalGeneral);
+    }
+
+    // Actualizar Resumen Financiero
+    function actualizarResumen(subtotal) {
+        const igv = subtotal * 0.18;
+        const total = subtotal + igv;
+
+        summarySubtotal.textContent = formatMoney(subtotal);
+        summaryBase.textContent = formatMoney(subtotal);
+        summaryIgv.textContent = formatMoney(igv);
+        summaryTotal.textContent = formatMoney(total);
+    }
+
+    // Renderizar lista del modal
+    function renderDB(filter = '') {
+        dbList.innerHTML = '';
+        const filtered = dbEnsayos.filter(item => 
+            item.codigo.toLowerCase().includes(filter.toLowerCase()) || 
+            item.descripcion.toLowerCase().includes(filter.toLowerCase())
+        );
+
+        filtered.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-surface-container transition-colors';
+            tr.innerHTML = `
+                <td class="p-2 font-bold">${item.codigo}</td>
+                <td class="p-2 text-sm">${item.descripcion}</td>
+                <td class="p-2 text-right">${item.precio.toFixed(2)}</td>
+                <td class="p-2 text-center">
+                    <button class="add-from-db-btn text-primary hover:text-primary-container p-1 rounded hover:bg-surface-variant transition-colors" data-codigo="${item.codigo}">
+                        <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                    </button>
+                </td>
+            `;
+            dbList.appendChild(tr);
+        });
+
+        document.querySelectorAll('.add-from-db-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const codigo = e.currentTarget.dataset.codigo;
+                const dbItem = dbEnsayos.find(i => i.codigo === codigo);
+                
+                // Check si ya existe, solo sumar cantidad
+                const existente = ensayosSeleccionados.find(i => i.codigo === codigo);
+                if (existente) {
+                    existente.cantidad += 1;
+                } else {
+                    ensayosSeleccionados.push({
+                        id: nextId++,
+                        codigo: dbItem.codigo,
+                        descripcion: dbItem.descripcion,
+                        precio: dbItem.precio,
+                        cantidad: 1
+                    });
+                }
+                
+                renderTabla();
+                closeModal();
+            });
+        });
+    }
+
+    // Modal Logic
+    function openModal() {
+        modal.classList.remove('hidden');
+        // trigger reflow
+        void modal.offsetWidth;
+        modal.classList.remove('opacity-0');
+        modalContent.classList.remove('scale-95');
+        searchInput.value = '';
+        renderDB();
+        setTimeout(() => searchInput.focus(), 300);
+    }
+
+    function closeModal() {
+        modal.classList.add('opacity-0');
+        modalContent.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+
+    document.getElementById('add-ensayo-btn').addEventListener('click', openModal);
+    document.getElementById('close-modal-btn').addEventListener('click', closeModal);
+    
+    // Close on click outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // Search input
+    searchInput.addEventListener('input', (e) => {
+        renderDB(e.target.value);
+    });
+
+    // Inicializar
+    renderTabla();
+
+</script>
+</body></html>

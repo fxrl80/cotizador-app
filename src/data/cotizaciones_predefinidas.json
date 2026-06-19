@@ -1,0 +1,702 @@
+{
+  "categorias": [
+    {
+      "id": "A",
+      "nombre": "A. ESTUDIO GEOLOGICO",
+      "subsecciones": [
+        {
+          "id": "A.1",
+          "nombre": "A) GEOLOGÍA",
+          "subsecciones": [
+            {
+              "id": "A.1.1",
+              "nombre": "1.1 Trabajo en campo",
+              "items": [
+                { "item": "1.1.1", "codigo": "OE0012", "descripcion": "INFORME DE GEOLOGIA (CMI-EG-01-A) - detalle del tipo de material por donde cruza la carretera, planos geologicos, plano geodinamico, plano de movimiento de masa y plano de estratigrafia de la zona de intervencion", "unidad": "Glb", "cantidad": 1, "precioUnitario": 1000.00 }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "nombre": "B. ESTUDIO DE MECANICA DE SUELOS",
+      "subsecciones": [
+        {
+          "id": "B.1",
+          "nombre": "B.1 AGUA POTABLE Y ALCANTARILLADO",
+          "subsecciones": [
+            {
+              "id": "B.1.1",
+              "nombre": "1.1 a. CAPTACION",
+              "items": [
+                { "item": "1.1", "codigo": "OE0096", "descripcion": "EXCAVACION DE CALICATAS DE 3.0 m", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 180.00 },
+                { "item": "1.1.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                { "item": "1.1.2", "codigo": "OE0044", "descripcion": "ENSAYO DE CORTE DIRECTO (SUELOS)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 260.00 }
+              ]
+            },
+            {
+              "id": "B.1.2",
+              "nombre": "1.2 b. RESERVORIO 10 m3",
+              "items": [
+                { "item": "1.2", "codigo": "OE0096", "descripcion": "EXCAVACION DE CALICATAS DE 3.0 m", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 180.00 },
+                { "item": "1.2.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                { "item": "1.2.2", "codigo": "OE0044", "descripcion": "ENSAYO DE CORTE DIRECTO (SUELOS)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 260.00 }
+              ]
+            },
+            {
+              "id": "B.1.3",
+              "nombre": "1.3 c. RED DE DISTRIBUCION (1817 m) cada 400m",
+              "items": [
+                { "item": "1.3", "codigo": "OE0097", "descripcion": "EXCAVACION DE CALICATAS DE 1.0 m", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 60.00 },
+                { "item": "1.3.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 4, "precioUnitario": 100.00 }
+              ]
+            },
+            {
+              "id": "B.1.4",
+              "nombre": "1.4 d. RED DE ALCANTARILLADO (223 m) cada 400m",
+              "items": [
+                { "item": "1.4", "codigo": "OE0097", "descripcion": "EXCAVACION DE CALICATAS DE 1.0 m", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 60.00 },
+                { "item": "1.4.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 }
+              ]
+            },
+            {
+              "id": "B.1.5",
+              "nombre": "1.5 e. PTAR",
+              "items": [
+                { "item": "1.5", "codigo": "OE0096", "descripcion": "EXCAVACION DE CALICATAS DE 3.0 m", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 180.00 },
+                { "item": "1.5.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                { "item": "1.5.2", "codigo": "OE0044", "descripcion": "ENSAYO DE CORTE DIRECTO (SUELOS)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 260.00 },
+                { "item": "1.5.3", "codigo": "OC0047", "descripcion": "COLAPSABILIDAD DE SUELOS", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 180.00 }
+              ]
+            },
+            {
+              "id": "B.1.6",
+              "nombre": "1.6 f. PASE AEREO",
+              "items": [
+                { "item": "1.6", "codigo": "OE0096", "descripcion": "EXCAVACION DE CALICATAS DE 3.0 m", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 180.00 },
+                { "item": "1.6.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                { "item": "1.6.2", "codigo": "OE0044", "descripcion": "ENSAYO DE CORTE DIRECTO (SUELOS)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 260.00 }
+              ]
+            },
+            {
+              "id": "B.1.7",
+              "nombre": "1.7 g. PRUEBA DE INFILTRACION",
+              "items": [
+                { "item": "1.7", "codigo": "OE0097", "descripcion": "EXCAVACION DE CALICATAS DE 1.0 m", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 60.00 },
+                { "item": "1.7.1", "codigo": "OT0025", "descripcion": "TEST DE PERCOLACIÓN", "unidad": "Punto", "cantidad": 5, "precioUnitario": 50.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.2",
+          "nombre": "B.2 EMS - EDIFICACIONES",
+          "subsecciones": [
+            {
+              "id": "B.2.1",
+              "nombre": "1.1 a. ENSAYOS EN CAMPO",
+              "items": [
+                { "item": "1.1.1", "codigo": "OE0012", "descripcion": "ENSAYO GEOFÍSICO-LÍNEA SISMICA (REFRACCIÓN SISMICA) HASTA 75M", "unidad": "Línea", "cantidad": 1, "precioUnitario": 1500.00 },
+                { "item": "1.1.2", "codigo": "OE0087", "descripcion": "ENSAYO GEOFÍSICO-LÍNEA SISMICA (MASW-2D) HASTA 75M", "unidad": "Línea", "cantidad": 1, "precioUnitario": 1000.00 }
+              ]
+            },
+            {
+              "id": "B.2.2",
+              "nombre": "1.2 b. APERTURA DE CALICATAS",
+              "items": [
+                { "item": "1.2.1", "codigo": "OE0096", "descripcion": "EXCAVACIÓN DE CALICATAS DE 3.0 m", "unidad": "Calicata", "cantidad": 6, "precioUnitario": 190.00 },
+                { "item": "1.2.1b", "codigo": "OE0008", "descripcion": "EXCAVACIÓN DE CALICATAS DE 4M O SEGUN REQUIERA EL PROYECTO", "unidad": "Calicata", "cantidad": 3, "precioUnitario": 220.00 },
+                { "item": "1.2.2", "codigo": "OL0066", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRÁFICO", "unidad": "Calicata", "cantidad": 9, "precioUnitario": 20.00 }
+              ]
+            },
+            {
+              "id": "B.2.3",
+              "nombre": "1.3 c. ENSAYOS EN LABORATORIO",
+              "items": [
+                { "item": "1.3.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 9, "precioUnitario": 120.00 },
+                { "item": "1.3.2", "codigo": "OC0106", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 9, "precioUnitario": 20.00 },
+                { "item": "1.3.3", "codigo": "OE0048", "descripcion": "ENSAYO TRIAXIAL CD", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 1800.00 },
+                { "item": "1.3.4", "codigo": "OE0050", "descripcion": "ENSAYO TRIAXIAL CU", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 1200.00 },
+                { "item": "1.3.5", "codigo": "OC0047", "descripcion": "ENSAYO DE CONSOLIDACION UNIDIMENSIONAL", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 250.00 },
+                { "item": "1.3.6", "codigo": "OE0046", "descripcion": "HINCHAMIENTO UNIDIMENSIONAL O POTENCIAL DE ASENTAMIENTO DE SUELOS COHESIVOS", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 250.00 },
+                { "item": "1.3.7", "codigo": "OE0047", "descripcion": "COLAPSABILIDAD DE SUELOS", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 250.00 },
+                { "item": "1.3.8", "codigo": "OE0048", "descripcion": "ANALISIS QUIMICO DE SUELOS (Sulfatos, cloruros, sales)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 },
+                { "item": "1.3.9", "codigo": "OE0049", "descripcion": "ANALISIS QUIMICO DEL AGUA (pH, SO4, CI, SST)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 },
+                { "item": "1.3.10", "codigo": "OE0050", "descripcion": "ENSAYO DE PROCTOR MODIFICADO", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 },
+                { "item": "1.3.11", "codigo": "OE0030", "descripcion": "[POR DEFINIR]", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 280.00 },
+                { "item": "1.3.12", "codigo": "OE0031", "descripcion": "ENSAYO DE LABORATORIO DE MECANICA DE ROCAS", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 500.00 }
+              ]
+            },
+            {
+              "id": "B.2.4",
+              "nombre": "2. d) ELABORACION DE INFORME",
+              "items": [
+                { "item": "2.1", "codigo": "OI0067", "descripcion": "INFORME DE MECÁNICA DE SUELOS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 700.00 }
+              ]
+            },
+            {
+              "id": "B.2.5",
+              "nombre": "3. e) MOVILIDAD Y VIÁTICOS",
+              "items": [
+                { "item": "3.1", "codigo": "OM0055", "descripcion": "MOVILIDAD Y VIÁTICOS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 600.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.3",
+          "nombre": "B.3 EMS - VIVIENDAS",
+          "subsecciones": [
+            {
+              "id": "B.3.1",
+              "nombre": "1.1 APERTURA DE CALICATA",
+              "items": [
+                { "item": "1.1.1", "codigo": "OE0001", "descripcion": "EXCAVACION DE CALICATAS DE 3.0 m", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 200.00 },
+                { "item": "1.1.2", "codigo": "OL0066", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRAFICO", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 20.00 }
+              ]
+            },
+            {
+              "id": "B.3.2",
+              "nombre": "1.2 ENSAYOS EN LABORATORIO",
+              "items": [
+                { "item": "1.2.1", "codigo": "OC0025", "descripcion": "CLASIFICACION DE SUELO (granulometria y limites)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 110.00 },
+                { "item": "1.2.2", "codigo": "OC0026", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 20.00 },
+                { "item": "1.2.3", "codigo": "OE0022", "descripcion": "ENSAYO DE CORTE DIRECTO (suelos y/o roca)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 250.00 }
+              ]
+            },
+            {
+              "id": "B.3.3",
+              "nombre": "3. ELABORACION DE INFORMES",
+              "items": [
+                { "item": "3.1", "codigo": "CI0026", "descripcion": "INFORME DE ESTUDIO DE CAPACIDAD PORTANTE DE SUELO", "unidad": "Glb", "cantidad": 1, "precioUnitario": 150.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.4",
+          "nombre": "B.4 EMS - PUENTES",
+          "subsecciones": [
+            {
+              "id": "B.4.A",
+              "nombre": "A) ESTUDIO DE MECANICA DE SUELOS - PUENTE",
+              "subsecciones": [
+                {
+                  "id": "B.4.A.1",
+                  "nombre": "1.1 a. ENSAYOS EN CAMPO",
+                  "items": [
+                    { "item": "1.1.1", "codigo": "OE0012", "descripcion": "ENSAYO GEOFÍSICO-LÍNEA SISMICA (REFRACCIÓN SISMICA) HASTA 75M", "unidad": "Línea", "cantidad": 2, "precioUnitario": 1400.00 },
+                    { "item": "1.1.2", "codigo": "OE0087", "descripcion": "ENSAYO GEOFÍSICO-LÍNEA SISMICA (MASW-2D) HASTA 75M", "unidad": "Línea", "cantidad": 2, "precioUnitario": 1000.00 }
+                  ]
+                },
+                {
+                  "id": "B.4.A.2",
+                  "nombre": "1.2 b. APERTURA DE CALICATAS",
+                  "items": [
+                    { "item": "1.2.1", "codigo": "OE0001", "descripcion": "EXCAVACIÓN DE CALICATAS DE 1.5 m", "unidad": "Calicata", "cantidad": 2, "precioUnitario": 60.00 },
+                    { "item": "1.2.2", "codigo": "OE0008", "descripcion": "EXCAVACION DE CALICATAS DE 5.0 m O SEGÚN REQUIERA EL PROYECTO", "unidad": "Calicata", "cantidad": 2, "precioUnitario": 300.00 },
+                    { "item": "1.2.3", "codigo": "OL0066", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRÁFICO", "unidad": "Calicata", "cantidad": 2, "precioUnitario": 15.00 }
+                  ]
+                },
+                {
+                  "id": "B.4.A.3",
+                  "nombre": "1.3 c. ENSAYOS EN LABORATORIO",
+                  "items": [
+                    { "item": "1.3.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                    { "item": "1.3.2", "codigo": "OC0053", "descripcion": "CLASIFICACION DE ROCA", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 },
+                    { "item": "1.3.3", "codigo": "OC0106", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 20.00 },
+                    { "item": "1.3.4", "codigo": "OE0050", "descripcion": "ENSAYO TRIAXIAL CU", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 1200.00 },
+                    { "item": "1.3.5", "codigo": "OC0047", "descripcion": "COLAPSABILIDAD DE SUELOS", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 180.00 },
+                    { "item": "1.3.6", "codigo": "OE0046", "descripcion": "HINCHAMIENTO UNIDIMENSIONAL", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 180.00 },
+                    { "item": "1.3.7", "codigo": "OE0030", "descripcion": "ANALISIS QUIMICO DE ROCA", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 },
+                    { "item": "1.3.8", "codigo": "OE0030", "descripcion": "[POR DEFINIR]", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 220.00 }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "B.4.B",
+              "nombre": "B) ESTUDIO DE CANTERA Y FUENTES DE AGUA",
+              "subsecciones": [
+                {
+                  "id": "B.4.B.1",
+                  "nombre": "2.1 a. APERTURA DE CALICATAS",
+                  "items": [
+                    { "item": "2.1.1", "codigo": "OE0001", "descripcion": "EXCAVACIÓN DE CALICATAS DE 1.5 m", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 60.00 },
+                    { "item": "2.1.2", "codigo": "OL0066", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRÁFICO", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 15.00 }
+                  ]
+                },
+                {
+                  "id": "B.4.B.2",
+                  "nombre": "2.3 b. ENSAYOS EN LABORATORIO",
+                  "items": [
+                    { "item": "2.3.1", "codigo": "OC0043", "descripcion": "CLASIFICACION DE ROCAS", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                    { "item": "2.3.2", "codigo": "OE0031", "descripcion": "[POR DEFINIR]", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                    { "item": "2.3.3", "codigo": "OC0106", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 20.00 },
+                    { "item": "2.3.4", "codigo": "OE0030", "descripcion": "[POR DEFINIR]", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 220.00 },
+                    { "item": "2.3.5", "codigo": "OE0027", "descripcion": "ENSAYO DE PROCTOR MODIFICADO", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 160.00 },
+                    { "item": "2.3.7", "codigo": "OA0025", "descripcion": "ANALISIS QUIMICO DE ROCA", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 },
+                    { "item": "2.3.8", "codigo": "OE0044", "descripcion": "ENSAYO DE CORTE DIRECTO (suelos)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 250.00 }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "B.4.C",
+              "nombre": "C) ANALISIS DE MATERIAL SUPERFICIAL DE RIO",
+              "subsecciones": [
+                {
+                  "id": "B.4.C.1",
+                  "nombre": "3.1 a. APERTURA DE CALICATAS",
+                  "items": [
+                    { "item": "3.1.1", "codigo": "OE0022", "descripcion": "EXCAVACIÓN DE CALICATAS", "unidad": "Calicata", "cantidad": 2, "precioUnitario": 50.00 },
+                    { "item": "3.1.2", "codigo": "OL0003", "descripcion": "LEVANTAMIENTO DE PERFIL", "unidad": "Calicata", "cantidad": 2, "precioUnitario": 15.00 }
+                  ]
+                },
+                {
+                  "id": "B.4.C.2",
+                  "nombre": "3.2 b. ENSAYOS EN LABORATORIO",
+                  "items": [
+                    { "item": "3.2.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 2, "precioUnitario": 100.00 }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "B.4.D",
+              "nombre": "D) DISEÑO DE MEZCLA",
+              "items": [
+                { "item": "4.1", "codigo": "CG0040", "descripcion": "GRANULOMETRIA DE AG Y AF", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 },
+                { "item": "4.2", "codigo": "PE0100", "descripcion": "PESO ESPECIFICO DE AG Y AF", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                { "item": "4.3", "codigo": "PU0101", "descripcion": "PESO UNITARIO DE AG Y AF", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 }
+              ]
+            },
+            {
+              "id": "B.4.E",
+              "nombre": "E) ELABORACION DE INFORME",
+              "items": [
+                { "item": "5.1", "codigo": "OI0067", "descripcion": "INFORME DE MECÁNICA DE SUELOS - PUENTE", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 },
+                { "item": "5.2", "codigo": "OI0068", "descripcion": "INFORME DE CANTERAS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 200.00 },
+                { "item": "5.3", "codigo": "OI0063", "descripcion": "INFORME DE MATERIAL DE RIO", "unidad": "Glb", "cantidad": 1, "precioUnitario": 200.00 },
+                { "item": "5.4", "codigo": "CI0066", "descripcion": "INFORME DE DISEÑO DE MEZCLA", "unidad": "Glb", "cantidad": 1, "precioUnitario": 200.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.5",
+          "nombre": "B.5 EMS - DEFENSA RIBEREÑA",
+          "subsecciones": [
+            {
+              "id": "B.5.1",
+              "nombre": "1.1 Trabajo en campo",
+              "items": [
+                { "item": "1.1.1", "codigo": "OE0066", "descripcion": "EXCAVACIÓN DE CALICATAS DE 2.0 m", "unidad": "Calicata", "cantidad": 5, "precioUnitario": 100.00 },
+                { "item": "1.1.2", "codigo": "OL0052", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRÁFICO x calicata", "unidad": "Calicata", "cantidad": 5, "precioUnitario": 20.00 }
+              ]
+            },
+            {
+              "id": "B.5.2",
+              "nombre": "1.2 Trabajos de laboratorio",
+              "items": [
+                { "item": "1.2.1", "codigo": "OC0025", "descripcion": "CLASIFICACIÓN DE SUELOS (granulometría y límites)", "unidad": "Muestra", "cantidad": 5, "precioUnitario": 120.00 },
+                { "item": "1.2.2", "codigo": "OC0014", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 5, "precioUnitario": 20.00 },
+                { "item": "1.2.3", "codigo": "OE0022", "descripcion": "ENSAYO DE CORTE DIRECTO (suelos)", "unidad": "Muestra", "cantidad": 5, "precioUnitario": 250.00 },
+                { "item": "1.2.4", "codigo": "OE0023", "descripcion": "DETERMINACION DE LA CAPACIDAD PORTANTE", "unidad": "Muestra", "cantidad": 5, "precioUnitario": 80.00 }
+              ]
+            },
+            {
+              "id": "B.5.3",
+              "nombre": "2. ESTUDIO DE CANTERAS - PIEDRA / ENRROCADOS",
+              "items": [
+                { "item": "2.1", "codigo": "DP0100", "descripcion": "DESCRIPCIÓN PETROGRÁFICA", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 },
+                { "item": "2.2", "codigo": "CP0101", "descripcion": "ENSAYO DE CARGA PUNTUAL", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 },
+                { "item": "2.3", "codigo": "CD0102", "descripcion": "ENSAYO DE CORTE DIRECTO", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 200.00 }
+              ]
+            },
+            {
+              "id": "B.5.4",
+              "nombre": "3. INFORMES",
+              "items": [
+                { "item": "3.1", "codigo": "CI0022", "descripcion": "INFORME DE MECANICA DE SUELOS (CMI-EMS-01-B8)", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 },
+                { "item": "3.2", "codigo": "OI0061", "descripcion": "INFORME DE CANTERAS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 300.00 }
+              ]
+            },
+            {
+              "id": "B.5.5",
+              "nombre": "4. MOVILIDAD",
+              "items": [
+                { "item": "4.1", "codigo": "CM0056", "descripcion": "MOVILIDAD (para trasladar equipos, personal y muestras)", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 },
+                { "item": "4.2", "codigo": "CM0057", "descripcion": "VIATICOS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 100.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.6",
+          "nombre": "B.6 EMS - TALUDES EN ROCA",
+          "subsecciones": [
+            {
+              "id": "B.6.1",
+              "nombre": "1.1 ENSAYOS DE CAMPO",
+              "items": [
+                { "item": "1.1.1", "codigo": "OE0123", "descripcion": "EXTRACCION DE MUESTRAS EN EL TALUD ROCOSO", "unidad": "Unidad", "cantidad": 3, "precioUnitario": 80.00 },
+                { "item": "1.1.2", "codigo": "OI0019", "descripcion": "VERIFICACION DE MACIZO ROCOSO (Evaluacion de las discontinuidades)", "unidad": "Unidad", "cantidad": 3, "precioUnitario": 80.00 },
+                { "item": "1.1.3", "codigo": "OE0016", "descripcion": "CARACTERIZACION DEL MACIZO ROCOSO (Estacion Geomecanica)", "unidad": "Unidad", "cantidad": 3, "precioUnitario": 100.00 },
+                { "item": "1.1.4", "codigo": "CE0105", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRAFICO", "unidad": "Unidad", "cantidad": 3, "precioUnitario": 30.00 }
+              ]
+            },
+            {
+              "id": "B.6.2",
+              "nombre": "1.2 ENSAYOS DE LABORATORIO",
+              "items": [
+                { "item": "1.2.1", "codigo": "OC0018", "descripcion": "DESCRIPCION MACROSCOPICA DE LA ROCA", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 60.00 },
+                { "item": "1.2.2", "codigo": "OC0026", "descripcion": "DESCRIPCION PETROGRAFICA DE LA ROCA", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 60.00 },
+                { "item": "1.2.3", "codigo": "OD0020", "descripcion": "DETERMINACION DEL PESO ESPECIFICO DE LA ROCA", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 80.00 },
+                { "item": "1.2.4", "codigo": "OE0048", "descripcion": "COMPRESION SIMPLE (UNIAXIAL - UCS)", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 100.00 },
+                { "item": "1.2.5", "codigo": "OE0050", "descripcion": "CARGA PUNTUAL (Point load Test - PLT)", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 120.00 },
+                { "item": "1.2.6", "codigo": "OE0044", "descripcion": "ENSAYO DE CORTE DIRECTO (roca)", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 250.00 },
+                { "item": "1.2.7", "codigo": "OE0120", "descripcion": "CARACTERIZACION FISICA DE LA ROCA (Densidad, Porosidad, Absorcion, etc)", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 80.00 },
+                { "item": "1.2.8", "codigo": "OA0135", "descripcion": "ANALISIS QUIMICO EN ROCA (SO4, CL, SST, PH)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 250.00 }
+              ]
+            },
+            {
+              "id": "B.6.3",
+              "nombre": "2. ELABORACION DE INFORMES",
+              "items": [
+                { "item": "2.1", "codigo": "OI0067", "descripcion": "INFORME DE MECANICA DE ROCAS - MURO DE CONTENCION", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 }
+              ]
+            },
+            {
+              "id": "B.6.4",
+              "nombre": "3. MOVILIDAD",
+              "items": [
+                { "item": "3.1", "codigo": "CM0056", "descripcion": "MOVILIDAD (para trasladar equipos, personal y muestras)", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 },
+                { "item": "3.2", "codigo": "CM0057", "descripcion": "VIATICOS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 100.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.7",
+          "nombre": "B.7 EMS - PRESAS",
+          "subsecciones": [
+            {
+              "id": "B.7.1",
+              "nombre": "1.1 TRABAJOS DE CAMPO",
+              "items": [
+                { "item": "1.1.1", "codigo": "OE0013", "descripcion": "EXCAVACIÓN DE CALICATAS EN PRESA", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 350.00 },
+                { "item": "1.1.2", "codigo": "CE0054", "descripcion": "MUESTREO EN CAMPO", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 50.00 },
+                { "item": "1.1.3", "codigo": "OE0016", "descripcion": "ENSAYO DE CAMPO IN SITU", "unidad": "Punto", "cantidad": 1, "precioUnitario": 120.00 },
+                { "item": "1.1.4", "codigo": "OL0018", "descripcion": "LEVANTAMIENTO DE PERFIL", "unidad": "Calicata", "cantidad": 1, "precioUnitario": 50.00 },
+                { "item": "1.1.5", "codigo": "OL0012", "descripcion": "ENSAYO GEOFÍSICO - LÍNEA SÍSMICA", "unidad": "Línea", "cantidad": 2, "precioUnitario": 3500.00 },
+                { "item": "1.1.6", "codigo": "OE0131", "descripcion": "ENSAYO DE TOMOGRAFIA ELECTRICA 2D, long= 120 m", "unidad": "Línea", "cantidad": 3, "precioUnitario": 4500.00 },
+                { "item": "1.1.7", "codigo": "OP014", "descripcion": "PERFORACION DE DIAMANTINA EN SUELOS Y ROCAS (hasta 30 metros)", "unidad": "Metro", "cantidad": 1, "precioUnitario": 1000.00 },
+                { "item": "1.1.8", "codigo": "OE0025", "descripcion": "ENSAYO DE PERMEABILIDAD EN EJE DE PRESA (LEFRANK Y LUGEON)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 2000.00 }
+              ]
+            },
+            {
+              "id": "B.7.2",
+              "nombre": "1.2 TRABAJOS DE LABORATORIO",
+              "items": [
+                { "item": "1.2.1", "codigo": "OC006", "descripcion": "CLASIFICACION DE SUELOS (granulometria y limites)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 200.00 },
+                { "item": "1.2.2", "codigo": "OE0025", "descripcion": "ENSAYO TRIAXIAL UU - Prueba con consolidacion con drenaje", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 500.00 },
+                { "item": "1.2.3", "codigo": "OE0026", "descripcion": "ENSAYO TRIAXIAL CU - Prueba con consolidacion sin drenaje", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 1100.00 },
+                { "item": "1.2.4", "codigo": "OE0050", "descripcion": "EXPANSION CONTROLADA", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 400.00 },
+                { "item": "1.2.5", "codigo": "OC0013", "descripcion": "COLAPSABILIDAD EN EDÓMETRO", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 400.00 },
+                { "item": "1.2.6", "codigo": "OD0015", "descripcion": "DISPERSION QUIMICO", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 300.00 },
+                { "item": "1.2.7", "codigo": "OA0015", "descripcion": "ANALISIS QUIMICO DEL AGUA (Ph, SO4, CI, SST)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 150.00 }
+              ]
+            },
+            {
+              "id": "B.7.3",
+              "nombre": "2. MOVILIDAD",
+              "items": [
+                { "item": "2.1", "codigo": "CM0056", "descripcion": "MOVILIDAD (para trasladar equipos, personal y muestras)", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 },
+                { "item": "2.2", "codigo": "CM0057", "descripcion": "VIATICOS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 100.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.8",
+          "nombre": "B.8 EMS - CARRETERA DE AFIRMADO",
+          "subsecciones": [
+            {
+              "id": "B.8.A",
+              "nombre": "A) GEOLOGÍA",
+              "items": [
+                { "item": "1.1.2", "codigo": "OE0012", "descripcion": "INFORME DE GEOLOGIA (CMI-EG-01-A) - detalle del tipo de material por donde cruza la carretera, planos geologicos, plano geodinamico, plano de movimiento de masa", "unidad": "Glb", "cantidad": 1, "precioUnitario": 1000.00 }
+              ]
+            },
+            {
+              "id": "B.8.B",
+              "nombre": "B) ESTUDIO DE MECANICA DE SUELOS",
+              "subsecciones": [
+                {
+                  "id": "B.8.B.1",
+                  "nombre": "2.1 TRABAJOS DE CAMPO",
+                  "items": [
+                    { "item": "2.1.1", "codigo": "EC0026", "descripcion": "EXCAVACION DE CALICATAS DE 1.5 m", "unidad": "Calicata", "cantidad": 10, "precioUnitario": 80.00 },
+                    { "item": "2.1.2", "codigo": "OL0052", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRÁFICO x calicata", "unidad": "Calicata", "cantidad": 5, "precioUnitario": 20.00 }
+                  ]
+                },
+                {
+                  "id": "B.8.B.2",
+                  "nombre": "2.2 TRABAJOS DE LABORATORIO",
+                  "items": [
+                    { "item": "2.2.1", "codigo": "OC0025", "descripcion": "CLASIFICACION DE SUELOS (granulometria y limites)", "unidad": "Muestra", "cantidad": 21, "precioUnitario": 100.00 },
+                    { "item": "2.2.2", "codigo": "OC0026", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 21, "precioUnitario": 10.00 },
+                    { "item": "2.2.3", "codigo": "OE0028", "descripcion": "ENSAYO DE PROCTOR MODIFICADO", "unidad": "Muestra", "cantidad": 7, "precioUnitario": 100.00 },
+                    { "item": "2.2.4", "codigo": "OE0023", "descripcion": "ENSAYO CBR (valor de soporte de suelos)", "unidad": "Muestra", "cantidad": 7, "precioUnitario": 150.00 },
+                    { "item": "2.2.5", "codigo": "CI0029", "descripcion": "INFORME DE MECANICA DE SUELOS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 300.00 }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "B.8.C",
+              "nombre": "C) ESTUDIO DE CANTERAS Y FUENTES DE AGUA",
+              "subsecciones": [
+                {
+                  "id": "B.8.C.1",
+                  "nombre": "3.1 Trabajo en campo",
+                  "items": [
+                    { "item": "3.1.1", "codigo": "EC0026", "descripcion": "EXCAVACION DE CALICATAS DE 2.0 m", "unidad": "Punto", "cantidad": 4, "precioUnitario": 80.00 },
+                    { "item": "3.1.2", "codigo": "OD0036", "descripcion": "DETERMINACION DE POTENCIA DE LA CANTERA (Topografia, planos y calculos)", "unidad": "Calicata", "cantidad": 4, "precioUnitario": 50.00 }
+                  ]
+                },
+                {
+                  "id": "B.8.C.2",
+                  "nombre": "3.2 Trabajo de laboratorio",
+                  "items": [
+                    { "item": "3.2.1", "codigo": "OC0025", "descripcion": "CLASIFICACION DE SUELOS (granulometria y limites)", "unidad": "Muestra", "cantidad": 4, "precioUnitario": 100.00 },
+                    { "item": "3.2.2", "codigo": "OE0028", "descripcion": "ENSAYO DE PROCTOR MODIFICADO", "unidad": "Muestra", "cantidad": 4, "precioUnitario": 150.00 },
+                    { "item": "3.2.3", "codigo": "OE0023", "descripcion": "ENSAYO CBR (valor de soporte de suelos)", "unidad": "Muestra", "cantidad": 4, "precioUnitario": 200.00 },
+                    { "item": "3.2.4", "codigo": "OE0021", "descripcion": "ENSAYO DE ABRASION (en la Maquina de los angeles)", "unidad": "Muestra", "cantidad": 4, "precioUnitario": 100.00 },
+                    { "item": "3.2.5", "codigo": "OA0001", "descripcion": "ANALISIS QUIMICO DE SUELOS (Sulfatos, cloruros, sales)", "unidad": "Muestra", "cantidad": 4, "precioUnitario": 150.00 },
+                    { "item": "3.2.6", "codigo": "OA0002", "descripcion": "ANALISIS QUIMICO DEL AGUA (pH, SO4, CI, SST)", "unidad": "Muestra", "cantidad": 4, "precioUnitario": 150.00 },
+                    { "item": "3.2.7", "codigo": "CI0014", "descripcion": "INFORME DE CANTERAS Y FUENTES DE AGUA", "unidad": "Glb", "cantidad": 1, "precioUnitario": 300.00 }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "B.8.D",
+              "nombre": "D) TRAFICO",
+              "items": [
+                { "item": "4.1.1", "codigo": "CI0022", "descripcion": "INFORME DE TRAFICO (CMI-ET-01-D) - determinacion de las estaciones de conteo", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 }
+              ]
+            },
+            {
+              "id": "B.8.E",
+              "nombre": "E) ANALISIS DE ESTABILIDAD DE TALUDES",
+              "items": [
+                { "item": "5.1", "codigo": "OA0032", "descripcion": "ANALISIS DE TALUDES INESTABLES (DESARROLLADO EN BASE A LA TEORIA DE EQUILIBRIO LIMITE)", "unidad": "Glb", "cantidad": 5, "precioUnitario": 250.00 }
+              ]
+            },
+            {
+              "id": "B.8.F",
+              "nombre": "F) ESTRUCTURAS DE FUNDACION",
+              "items": [
+                { "item": "6.1", "codigo": "OE0096", "descripcion": "ENSAYO DE CORTE DIRECTO EN SUELOS Y/O ROCAS", "unidad": "Muestra", "cantidad": 10, "precioUnitario": 120.00 }
+              ]
+            },
+            {
+              "id": "B.8.G",
+              "nombre": "G) DISEÑO DE MEZCLA",
+              "items": [
+                { "item": "7.1", "codigo": "OG0002", "descripcion": "GRANULOMETRIA DE AG Y AF", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                { "item": "7.2", "codigo": "OC0036", "descripcion": "CALCULO DE PESOS UNITARIOS SUELTOS Y COMPACTOS DE AG Y AF", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 50.00 },
+                { "item": "7.3", "codigo": "OP0098", "descripcion": "PESOS ESPECIFICOS DE AG Y AF", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 50.00 },
+                { "item": "7.4", "codigo": "CI0029", "descripcion": "INFORME DE DISEÑO DE MEZCLA (CMI-DM-01-F)", "unidad": "Glb", "cantidad": 1, "precioUnitario": 400.00 }
+              ]
+            },
+            {
+              "id": "B.8.H",
+              "nombre": "8. MOVILIDAD Y VIÁTICOS",
+              "items": [
+                { "item": "8.1", "codigo": "OM0022", "descripcion": "MOVILIDAD Y VIÁTICOS (calculado de acuerdo a los dias de trabajo y a la distancia del proyecto)", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.9",
+          "nombre": "B.9 EMS - CARRETERA DE ASFALTO",
+          "subsecciones": []
+        },
+        {
+          "id": "B.10",
+          "nombre": "B.10 EMS - PISTAS Y VEREDAS",
+          "subsecciones": [
+            {
+              "id": "B.10.1",
+              "nombre": "1.1 ENSAYOS EN CAMPO",
+              "items": [
+                { "item": "1.1.1", "codigo": "EC0026", "descripcion": "EXCAVACION DE CALICATAS DE 2.0 m", "unidad": "Calicata", "cantidad": 4, "precioUnitario": 80.00 },
+                { "item": "1.1.2", "codigo": "OL0047", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRAFICO", "unidad": "Muestra", "cantidad": 30, "precioUnitario": 15.00 }
+              ]
+            },
+            {
+              "id": "B.10.2",
+              "nombre": "1.2 ENSAYOS EN LABORATORIO",
+              "items": [
+                { "item": "1.2.1", "codigo": "OC0059", "descripcion": "CLASIFICACION DE SUELOS (granulometria y limites)", "unidad": "Muestra", "cantidad": 30, "precioUnitario": 100.00 },
+                { "item": "1.2.2", "codigo": "OE0049", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 30, "precioUnitario": 20.00 },
+                { "item": "1.2.3", "codigo": "OE0048", "descripcion": "ENSAYO CBR (valor de soporte de suelos)", "unidad": "Muestra", "cantidad": 9, "precioUnitario": 220.00 },
+                { "item": "1.2.4", "codigo": "OE0049", "descripcion": "ENSAYO DE PROCTOR MODIFICADO", "unidad": "Muestra", "cantidad": 9, "precioUnitario": 130.00 },
+                { "item": "1.2.5", "codigo": "OA0020", "descripcion": "ANALISIS QUIMICO DE SUELOS (Sulfatos, cloruros, sales)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 0 }
+              ]
+            },
+            {
+              "id": "B.10.3",
+              "nombre": "2. ESTUDIO DE CANTERAS",
+              "items": [
+                { "item": "2.1.1", "codigo": "OC0059", "descripcion": "CLASIFICACION DE SUELOS (granulometria y limites)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 },
+                { "item": "2.1.2", "codigo": "OE0049", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 20.00 },
+                { "item": "2.1.3", "codigo": "OE0048", "descripcion": "ENSAYO DE PROCTOR MODIFICADO", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 130.00 },
+                { "item": "2.1.4", "codigo": "OE0049", "descripcion": "ENSAYO CBR (valor de soporte de suelos)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 220.00 },
+                { "item": "2.1.5", "codigo": "OE0050", "descripcion": "ANALISIS QUIMICO DEL AGUA Y SUELOS", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 80.00 },
+                { "item": "2.1.7", "codigo": "OE0052", "descripcion": "ENSAYO DE ABRASION (en la Maquina de los angeles)", "unidad": "Muestra", "cantidad": 1, "precioUnitario": 100.00 }
+              ]
+            },
+            {
+              "id": "B.10.4",
+              "nombre": "3. INFORME",
+              "items": [
+                { "item": "3.1", "codigo": "OE0050", "descripcion": "INFORME DE MECANICA DE SUELOS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 },
+                { "item": "3.2", "codigo": "OI0061", "descripcion": "INFORME DE CANTERAS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 300.00 }
+              ]
+            },
+            {
+              "id": "B.10.5",
+              "nombre": "4. MOVILIDAD Y VIÁTICOS",
+              "items": [
+                { "item": "4.1", "codigo": "OM0022", "descripcion": "MOVILIDAD Y VIÁTICOS (calculado de acuerdo a los dias de trabajo y a la distancia del proyecto)", "unidad": "Glb", "cantidad": 1, "precioUnitario": 500.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.11",
+          "nombre": "B.11 EMS - ACCESOS",
+          "subsecciones": [
+            {
+              "id": "B.11.1",
+              "nombre": "1.1 TRABAJOS DE CAMPO",
+              "items": [
+                { "item": "1.1.1", "codigo": "EC0026", "descripcion": "EXCAVACION DE CALICATAS DE 1.5 m", "unidad": "Calicata", "cantidad": 10, "precioUnitario": 80.00 },
+                { "item": "1.1.2", "codigo": "OL0052", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRÁFICO x calicata", "unidad": "Calicata", "cantidad": 5, "precioUnitario": 20.00 }
+              ]
+            },
+            {
+              "id": "B.11.2",
+              "nombre": "1.2 TRABAJOS DE LABORATORIO",
+              "items": [
+                { "item": "1.2.1", "codigo": "OC0025", "descripcion": "CLASIFICACION DE SUELOS (granulometria y limites)", "unidad": "Muestra", "cantidad": 21, "precioUnitario": 100.00 },
+                { "item": "1.2.2", "codigo": "OC0026", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 21, "precioUnitario": 10.00 },
+                { "item": "1.2.3", "codigo": "OE0028", "descripcion": "ENSAYO DE PROCTOR MODIFICADO", "unidad": "Muestra", "cantidad": 7, "precioUnitario": 100.00 },
+                { "item": "1.2.4", "codigo": "OE0023", "descripcion": "ENSAYO CBR (valor de soporte de suelos)", "unidad": "Muestra", "cantidad": 7, "precioUnitario": 150.00 }
+              ]
+            },
+            {
+              "id": "B.11.3",
+              "nombre": "1.3 INFORMES",
+              "items": [
+                { "item": "1.3.1", "codigo": "CI0029", "descripcion": "INFORME DE ACCESOS", "unidad": "Glb", "cantidad": 1, "precioUnitario": 300.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.12",
+          "nombre": "B.12 EMS - RIEGO",
+          "subsecciones": [
+            {
+              "id": "B.12.1",
+              "nombre": "1.1 TRABAJO EN CAMPO",
+              "items": [
+                { "item": "1.1.1", "codigo": "OE0100", "descripcion": "EXCAVACION DE CALICATAS DE LINEA DE CONDUCCION 1.0 m (cada 300 m)", "unidad": "Calicata", "cantidad": 10, "precioUnitario": 110.00 },
+                { "item": "1.1.2", "codigo": "OE0001", "descripcion": "EXCAVACION DE CALICATA PARA CAPTACION (0.00 A 1.50 m)", "unidad": "Calicata", "cantidad": 2, "precioUnitario": 120.00 },
+                { "item": "1.1.3", "codigo": "OL0052", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRÁFICO x calicata", "unidad": "Calicata", "cantidad": 12, "precioUnitario": 20.00 }
+              ]
+            },
+            {
+              "id": "B.12.2",
+              "nombre": "1.2 TRABAJOS DE LABORATORIO - CAPTACION",
+              "items": [
+                { "item": "1.2.1", "codigo": "OC0025", "descripcion": "CLASIFICACIÓN DE SUELOS (granulometría y límites)", "unidad": "Muestra", "cantidad": 2, "precioUnitario": 110.00 },
+                { "item": "1.2.2", "codigo": "OC0014", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 2, "precioUnitario": 20.00 },
+                { "item": "1.2.3", "codigo": "OE0022", "descripcion": "ENSAYO DE CORTE DIRECTO (suelos)", "unidad": "Muestra", "cantidad": 2, "precioUnitario": 250.00 },
+                { "item": "1.2.4", "codigo": "OE0048", "descripcion": "ANALISIS QUIMICO DE SUELOS (Sulfatos, cloruros, sales)", "unidad": "Muestra", "cantidad": 2, "precioUnitario": 200.00 }
+              ]
+            },
+            {
+              "id": "B.12.3",
+              "nombre": "1.3 TRABAJOS DE LABORATORIO - LINEA DE CONDUCCION",
+              "items": [
+                { "item": "1.3.1", "codigo": "OC0025", "descripcion": "CLASIFICACIÓN DE SUELOS (granulometría y límites)", "unidad": "Muestra", "cantidad": 10, "precioUnitario": 110.00 },
+                { "item": "1.3.2", "codigo": "OC0014", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 10, "precioUnitario": 20.00 }
+              ]
+            },
+            {
+              "id": "B.12.4",
+              "nombre": "3. ELABORACION DE INFORMES",
+              "items": [
+                { "item": "3.1", "codigo": "CI0026", "descripcion": "INFORME DE MECANICA DE SUELOS - RIEGO", "unidad": "Glb", "cantidad": 1, "precioUnitario": 400.00 }
+              ]
+            },
+            {
+              "id": "B.12.5",
+              "nombre": "4. MOVILIDAD Y VIÁTICOS",
+              "items": [
+                { "item": "4.1", "codigo": "OM0066", "descripcion": "MOVILIDAD Y COMBUSTIBLE", "unidad": "Día", "cantidad": 1, "precioUnitario": 500.00 },
+                { "item": "4.2", "codigo": "OM0067", "descripcion": "VIATICOS", "unidad": "Día", "cantidad": 1, "precioUnitario": 100.00 }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B.13",
+          "nombre": "B.13 EMS - PUENTES PEATONALES",
+          "subsecciones": []
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "nombre": "C. ESTUDIO DE CANTERAS Y FUENTES DE AGUA",
+      "subsecciones": [
+        {
+          "id": "C.1",
+          "nombre": "C.1 ESTUDIO DE CANTERA DE SUELOS Y FUENTES DE AGUA",
+          "subsecciones": [
+            {
+              "id": "C.1.1",
+              "nombre": "2.1 a. APERTURA DE CALICATAS",
+              "items": [
+                { "item": "2.1.1", "codigo": "OE0001", "descripcion": "EXCAVACIÓN DE CALICATAS DE 1.5 m", "unidad": "Calicata", "cantidad": 3, "precioUnitario": 60.00 },
+                { "item": "2.1.2", "codigo": "OL0066", "descripcion": "LEVANTAMIENTO DE PERFIL ESTRATIGRÁFICO", "unidad": "Calicata", "cantidad": 3, "precioUnitario": 20.00 }
+              ]
+            },
+            {
+              "id": "C.1.2",
+              "nombre": "2.2 b. ENSAYOS EN LABORATORIO",
+              "items": [
+                { "item": "2.2.1", "codigo": "OC0026", "descripcion": "CLASIFICACIÓN DE SUELOS (GRANULOMETRÍA Y LÍMITES)", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 120.00 },
+                { "item": "2.2.2", "codigo": "OC0106", "descripcion": "CONTENIDO DE HUMEDAD", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 20.00 },
+                { "item": "2.2.3", "codigo": "OE0030", "descripcion": "[POR DEFINIR]", "unidad": "Muestra", "cantidad": 2, "precioUnitario": 280.00 },
+                { "item": "2.2.4", "codigo": "OE0027", "descripcion": "ENSAYO DE PROCTOR MODIFICADO", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 150.00 },
+                { "item": "2.2.5", "codigo": "OE0031", "descripcion": "[POR DEFINIR]", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 120.00 },
+                { "item": "2.2.6", "codigo": "OA0025", "descripcion": "PESO ESPECIFICO RELATIVO", "unidad": "Muestra", "cantidad": 3, "precioUnitario": 60.00 }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
