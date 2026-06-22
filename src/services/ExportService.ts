@@ -1,6 +1,7 @@
 import Cotizacion from '../models/Cotizacion';
 import type { DatosFormulario } from '../views/FormView';
 import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable'; // <-- NUEVO IMPORT DEL PLUGIN
 
 // Cached logo base64 strings
 let logoCache: Record<string, string> = {};
@@ -25,6 +26,56 @@ async function loadImageAsBase64(url: string): Promise<string> {
     }
 }
 
+// Función auxiliar para convertir números a letras (Soles)
+function numeroALetras(num: number): string {
+    const entero = Math.floor(num);
+    if (entero === 0) return 'CERO';
+
+    const unidades = ['', 'UNO', 'DOS', 'TRES', 'CUATRO', 'CINCO', 'SEIS', 'SIETE', 'OCHO', 'NUEVE'];
+    const decenas = ['', 'DIEZ', 'VEINTE', 'TREINTA', 'CUARENTA', 'CINCUENTA', 'SESENTA', 'SETENTA', 'OCHENTA', 'NOVENTA'];
+    const especiales = { 11: 'ONCE', 12: 'DOCE', 13: 'TRECE', 14: 'CATORCE', 15: 'QUINCE', 16: 'DIECISÉIS', 17: 'DIECISIETE', 18: 'DIECIOCHO', 19: 'DIECINUEVE', 21: 'VEINTIUNO', 22: 'VEINTIDÓS', 23: 'VEINTITRÉS', 24: 'VEINTICUATRO', 25: 'VEINTICINCO', 26: 'VEINTISÉIS', 27: 'VEINTISIETE', 28: 'VEINTIOCHO', 29: 'VEINTINUEVE' };
+    const centenas = ['', 'CIENTO', 'DOSCIENTOS', 'TRESCIENTOS', 'CUATROCIENTOS', 'QUINIENTOS', 'SEISCIENTOS', 'SETECIENTOS', 'OCHOCIENTOS', 'NOVECIENTOS'];
+
+    function convertirGrupo(n: number): string {
+        if (n === 100) return 'CIEN';
+        let res = '';
+        const c = Math.floor(n / 100);
+        const d = Math.floor((n % 100) / 10);
+        const u = n % 10;
+
+        res += centenas[c] + ' ';
+
+        const du = n % 100;
+        if (du > 0) {
+            if (du < 10) res += unidades[du];
+            else if (du >= 11 && du <= 29 && du !== 20) res += especiales[du as keyof typeof especiales];
+            else {
+                res += decenas[d];
+                if (u > 0) res += ' Y ' + unidades[u];
+            }
+        }
+        return res.trim();
+    }
+
+    if (entero < 1000) return convertirGrupo(entero);
+    if (entero < 1000000) {
+        const miles = Math.floor(entero / 1000);
+        const resto = entero % 1000;
+        const strMiles = miles === 1 ? 'MIL' : convertirGrupo(miles) + ' MIL';
+        return (strMiles + ' ' + convertirGrupo(resto)).trim();
+    }
+    const millones = Math.floor(entero / 1000000);
+    const restoMillones = entero % 1000000;
+    const strMillones = millones === 1 ? 'UN MILLÓN' : convertirGrupo(millones) + ' MILLONES';
+    if (restoMillones === 0) return strMillones;
+
+    const miles = Math.floor(restoMillones / 1000);
+    const resto = restoMillones % 1000;
+    const strMiles = miles === 0 ? '' : (miles === 1 ? 'MIL' : convertirGrupo(miles) + ' MIL');
+
+    return (strMillones + ' ' + strMiles + ' ' + convertirGrupo(resto)).trim().replace(/\s+/g, ' ');
+}
+
 export default class ExportService {
     static async exportarPDF(cotizacion: Cotizacion, formData: DatosFormulario): Promise<void> {
         try {
@@ -40,19 +91,22 @@ export default class ExportService {
             const pageH = 297;
             const m = 5; // Margen reducido a 0.5 cm (5 mm)
             const w = pageW - 2 * m; // Ancho utilizable = 200
+            
+            const totalCotizacion = cotizacion.calcularTotal();
 
             // === HOJA 1: Cotización ===
-            let y = this.dibujarHeader(pdf, m, w, logoSoiltest, logoIso, logoLean, formData);
+            let y = this.dibujarHeader(pdf, m, w, logoSoiltest, logoIso, logoLean, formData, 'COTIZACIÓN');
             y = this.dibujarDatosAsesorYCotizacion(pdf, m, w, y, formData);
             y = this.dibujarDatosCliente(pdf, m, w, y, formData);
             y = this.dibujarOpciones(pdf, m, w, y, formData);
             y = this.dibujarProyecto(pdf, m, w, y, formData);
-            y = this.dibujarTablaItems(pdf, m, w, y, cotizacion, formData, logoSoiltest, logoIso, logoLean, pageH);
-            this.dibujarFooterConFirma(pdf, m, w, pageH);
+            y = this.dibujarTablaItems(pdf, m, w, y, cotizacion, formData, logoSoiltest, logoIso, logoLean, pageH, totalCotizacion);
+            this.dibujarFooterConFirma(pdf, m, w, pageH, totalCotizacion);
 
             // === HOJA 2: Términos y condiciones ===
             pdf.addPage();
-            this.dibujarTerminos(pdf, m, w, pageH);
+            let yTerms = this.dibujarHeader(pdf, m, w, logoSoiltest, logoIso, logoLean, formData, 'TÉRMINOS Y CONDICIONES');
+            this.dibujarTerminos(pdf, m, w, yTerms, pageH);
 
             // Save
             const nombre = formData.cliente.nombre.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]/g, '').trim().replace(/ /g, '_') || 'Cliente';
@@ -64,9 +118,10 @@ export default class ExportService {
         }
     }
 
-    // ==================== HEADER (Sin líneas, optimizado) ====================
-    private static dibujarHeader(pdf: jsPDF, m: number, w: number, logoSoiltest: string, logoIso: string, logoLean: string, _formData: DatosFormulario): number {
+    // ==================== HEADER (Reutilizable) ====================
+    private static dibujarHeader(pdf: jsPDF, m: number, w: number, logoSoiltest: string, logoIso: string, logoLean: string, formData: DatosFormulario, titulo: string): number {
         const rojo: [number, number, number] = [200, 0, 0];
+        const negro: [number, number, number] = [0, 0, 0];
         const gris: [number, number, number] = [100, 100, 100];
 
         // Logo SoilTest (Esquina superior izquierda)
@@ -86,15 +141,14 @@ export default class ExportService {
         pdf.text('LABORATORIO DE MECÁNICA DE SUELOS,', m + 17, m + 7);
         pdf.text('CONCRETO Y PAVIMENTOS', m + 17, m + 9.5);
 
-        // "COTIZACIÓN" (Centro superior, paralelo a los logos)
+        // TÍTULO CENTRAL (COTIZACIÓN o TÉRMINOS Y CONDICIONES)
         const cx = m + w / 2;
-        pdf.setFontSize(14);
+        pdf.setFontSize(titulo === 'COTIZACIÓN' ? 14 : 12);
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(...rojo);
-        pdf.text('COTIZACIÓN', cx, m + 5, { align: 'center' });
+        pdf.text(titulo, cx, m + 7, { align: 'center' });
 
         // Logos ISO y BIM (Extremo superior derecho)
-        // BIM pegado a la derecha, ISO a la izquierda de BIM
         if (logoLean) {
             try { pdf.addImage(logoLean, 'PNG', m + w - 25, m, 25, 12); } catch { /* skip */ }
         }
@@ -102,8 +156,47 @@ export default class ExportService {
             try { pdf.addImage(logoIso, 'PNG', m + w - 40, m, 12, 12); } catch { /* skip */ }
         }
 
-        // Retorna la posición Y donde terminará este bloque para que el resto se dibuje pegado arriba
-        return m + 15; 
+        // METADATOS: Apilados verticalmente, a una distancia segura de los logos
+        const labelX = m + w - 62.5;
+        const valueX = m + w - 52;
+        let metY = m + 2;
+        
+        const codigo = formData.codigo || 'ADM-CO-001';
+        const version = formData.version || '01';
+        const fecha = formData.fecha || new Date().toISOString().slice(0, 10);
+        const pagina = `${formData.pagina || '1'} de 2`;
+
+        pdf.setFontSize(6);
+
+        // Código
+        pdf.setFont('helvetica', 'bold'); pdf.setTextColor(...rojo);
+        pdf.text('CÓDIGO:', labelX, metY);
+        pdf.setFont('helvetica', 'normal'); pdf.setTextColor(...negro);
+        pdf.text(codigo, valueX, metY);
+        metY += 3;
+
+        // Versión
+        pdf.setFont('helvetica', 'bold'); pdf.setTextColor(...rojo);
+        pdf.text('VERSIÓN:', labelX, metY);
+        pdf.setFont('helvetica', 'normal'); pdf.setTextColor(...negro);
+        pdf.text(version, valueX, metY);
+        metY += 3;
+
+        // Fecha
+        pdf.setFont('helvetica', 'bold'); pdf.setTextColor(...rojo);
+        pdf.text('FECHA:', labelX, metY);
+        pdf.setFont('helvetica', 'normal'); pdf.setTextColor(...negro);
+        pdf.text(fecha, valueX, metY);
+        metY += 3;
+
+        // Página
+        pdf.setFont('helvetica', 'bold'); pdf.setTextColor(...rojo);
+        pdf.text('PÁGINA:', labelX, metY);
+        pdf.setFont('helvetica', 'normal'); pdf.setTextColor(...negro);
+        pdf.text(pagina, valueX, metY);
+
+        // Retorna la posición Y donde terminará este bloque
+        return m + 16; 
     }
 
     // ==================== ASESOR + FECHAS ====================
@@ -130,26 +223,9 @@ export default class ExportService {
             pdf.text(pair[1] || '', m + 25, y + i * 4.5);
         });
 
-        // Columna 2: Metadatos (Centro)
-        const midX = m + 75;
-        const metaLabels = [
-            ['CÓDIGO:', formData.codigo || 'ADM-CO-001'],
-            ['VERSIÓN:', formData.version || '01'],
-            ['PÁGINA:', `${formData.pagina || '1'} de 2`],
-        ];
-        metaLabels.forEach((pair, i) => {
-            pdf.setFont('helvetica', 'bold');
-            pdf.setTextColor(...rojo);
-            pdf.text(pair[0], midX, y + i * 4.5);
-            pdf.setFont('helvetica', 'normal');
-            pdf.setTextColor(...negro);
-            pdf.text(pair[1], midX + 18, y + i * 4.5);
-        });
-
-        // Columna 3: Fechas (Derecha)
-        const rightX = m + w - 55;
+        // Columna 2: Fechas y Cotización (Derecha)
+        const rightX = m + w - 60;
         const rightLabels = [
-            ['FECHA:', formData.fecha || new Date().toLocaleDateString('es-PE')],
             ['COTIZACIÓN N°:', formData.cotizacionNro || ''],
             ['CLIENTE ID:', formData.clienteId || '-'],
             ['VÁLIDO HASTA:', formData.validoHasta || ''],
@@ -164,7 +240,7 @@ export default class ExportService {
         });
 
         // Separador
-        const endY = y + 17;
+        const endY = y + 15;
         pdf.setDrawColor(200, 200, 200);
         pdf.setLineWidth(0.2);
         pdf.line(m, endY, m + w, endY);
@@ -230,33 +306,7 @@ export default class ExportService {
         return endY + 2;
     }
 
-    // ==================== PROYECTO ====================
-    private static dibujarProyecto(pdf: jsPDF, m: number, w: number, startY: number, formData: DatosFormulario): number {
-        const y = startY;
-        const rojo: [number, number, number] = [200, 0, 0];
-        const negro: [number, number, number] = [0, 0, 0];
-
-        pdf.setFontSize(7);
-        pdf.setFont('helvetica', 'bold');
-        pdf.setTextColor(...rojo);
-        pdf.text('Proyecto:', m + 2, y + 3);
-
-        pdf.setFont('helvetica', 'normal');
-        pdf.setTextColor(...negro);
-        const proyectoLines = this.splitText(pdf, formData.proyecto || '', w - 25);
-        proyectoLines.forEach((line, i) => {
-            pdf.text(line, m + 22, y + 3 + i * 4);
-        });
-
-        const endY = y + 5 + Math.max(proyectoLines.length - 1, 0) * 4;
-        pdf.setDrawColor(200, 200, 200);
-        pdf.setLineWidth(0.2);
-        pdf.line(m, endY, m + w, endY);
-
-        return endY + 4; // Espacio extra de separación antes de la Tabla de Ítems
-    }
-
-    // ==================== OPCIONES (Cruce corregido) ====================
+    // ==================== OPCIONES ====================
     private static dibujarOpciones(pdf: jsPDF, m: number, w: number, startY: number, formData: DatosFormulario): number {
         let y = startY;
         const rojo: [number, number, number] = [200, 0, 0];
@@ -264,7 +314,7 @@ export default class ExportService {
 
         pdf.setFontSize(6.5);
 
-        // --- FILA 1: Origen, Tipo de Proyecto, Situación ---
+        // --- FILA 1 ---
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(...rojo);
         pdf.text('ORIGEN:', m + 2, y + 3);
@@ -292,7 +342,7 @@ export default class ExportService {
 
         y += 7;
 
-        // --- FILA 2: Contenido Mínimo, Salida a Campo ---
+        // --- FILA 2 ---
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(...rojo);
         pdf.text('CONTENIDO MÍNIMO:', m + 2, y + 3);
@@ -312,7 +362,7 @@ export default class ExportService {
 
         y += 8;
 
-        // --- FILA 3: Tipo de Servicio (Desplegado en 2 columnas amplias) ---
+        // --- FILA 3: Tipo de Servicio ---
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(...rojo);
         pdf.text('TIPO DE SERVICIO:', m + 2, y + 3);
@@ -359,196 +409,247 @@ export default class ExportService {
         return endY + 2;
     }
 
-    // ==================== TABLA DE ITEMS ====================
+    // ==================== PROYECTO ====================
+    private static dibujarProyecto(pdf: jsPDF, m: number, w: number, startY: number, formData: DatosFormulario): number {
+        const y = startY;
+        const rojo: [number, number, number] = [200, 0, 0];
+        const negro: [number, number, number] = [0, 0, 0];
+
+        pdf.setFontSize(7);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setTextColor(...rojo);
+        pdf.text('Proyecto:', m + 2, y + 3);
+
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor(...negro);
+        const proyectoLines = this.splitText(pdf, formData.proyecto || '', w - 25);
+        proyectoLines.forEach((line, i) => {
+            pdf.text(line, m + 22, y + 3 + i * 4);
+        });
+
+        const endY = y + 5 + Math.max(proyectoLines.length - 1, 0) * 4;
+        pdf.setDrawColor(200, 200, 200);
+        pdf.setLineWidth(0.2);
+        pdf.line(m, endY, m + w, endY);
+
+        return endY + 4; // Espacio extra de separación antes de la Tabla de Ítems
+    }
+
+    // ==================== TABLA DE ITEMS (Inteligente con jspdf-autotable) ====================
     private static dibujarTablaItems(
         pdf: jsPDF, m: number, w: number, startY: number,
         cotizacion: Cotizacion, formData: DatosFormulario,
         logoSoiltest: string, logoIso: string, logoLean: string,
-        pageH: number
+        pageH: number, totalCotizacion: number
     ): number {
-        let y = startY;
         const rojo: [number, number, number] = [200, 0, 0];
         const negro: [number, number, number] = [0, 0, 0];
-        const footerSpace = 45; // Espacio libre requerido para que no choque con la firma
-        const maxY = pageH - footerSpace;
 
-        // Anchos de columna ajustados a w = 200
-        const cols = [12, 20, 86, 14, 14, 27, 27];
-
-        const dibujarEncabezadoTabla = (yy: number): number => {
-            pdf.setFillColor(200, 0, 0);
-            pdf.rect(m, yy, w, 6, 'F');
-
-            pdf.setFontSize(6.5);
-            pdf.setFont('helvetica', 'bold');
-            pdf.setTextColor(255, 255, 255);
-
-            const headers = ['ITEM', 'CÓDIGO', 'DESCRIPCIÓN DEL ENSAYO', 'UND', 'CANT.', 'P. UNIT.', 'TOTAL'];
-            let xPos = m;
-            headers.forEach((h, i) => {
-                const align = i >= 4 ? 'right' : 'left';
-                const tx = align === 'right' ? xPos + cols[i] - 2 : xPos + 2;
-                pdf.text(h, tx, yy + 4, { align: align === 'right' ? 'right' : 'left' });
-                xPos += cols[i];
-            });
-
-            return yy + 7;
-        };
-
-        y = dibujarEncabezadoTabla(y);
-
-        // Filas
         const items = cotizacion.obtenerItems();
-        pdf.setFontSize(6.5);
-        pdf.setFont('helvetica', 'normal');
-        pdf.setTextColor(...negro);
+        
+        // Mapeamos los datos de la cotización a un formato Array de Arrays para el plugin
+        const tableBody = items.map((item, idx) => [
+            String(idx + 1),
+            item.codigo,
+            item.descripcion,
+            item.unidad,
+            String(item.cantidad),
+            `S/ ${item.precioUnitario.toFixed(2)}`,
+            `S/ ${(item.cantidad * item.precioUnitario).toFixed(2)}`,
+        ]);
 
-        items.forEach((item, idx) => {
-            if (y > maxY) {
-                // Generar nueva página si la tabla supera el límite inferior
-                this.dibujarFooterConFirma(pdf, m, w, pageH);
-                pdf.addPage();
-                y = this.dibujarHeader(pdf, m, w, logoSoiltest, logoIso, logoLean, formData);
-                y = dibujarEncabezadoTabla(y);
-                pdf.setFontSize(6.5);
-                pdf.setFont('helvetica', 'normal');
-                pdf.setTextColor(...negro);
-            }
-
-            // Fondo alternado para filas
-            if (idx % 2 === 0) {
-                pdf.setFillColor(252, 248, 248);
-                pdf.rect(m, y - 1, w, 5.5, 'F');
-            }
-
-            let xPos = m;
-            const totalItem = (item.cantidad * item.precioUnitario).toFixed(2);
-            const rowData = [
-                String(idx + 1),
-                item.codigo,
-                item.descripcion,
-                item.unidad,
-                String(item.cantidad),
-                `S/ ${item.precioUnitario.toFixed(2)}`,
-                `S/ ${totalItem}`,
-            ];
-
-            pdf.setTextColor(...negro);
-            rowData.forEach((val, i) => {
-                const align = i >= 4 ? 'right' : 'left';
-                const tx = align === 'right' ? xPos + cols[i] - 2 : xPos + 2;
-                let text = val;
-                if (i === 2) {
-                    const maxW = cols[i] - 4;
-                    while (pdf.getTextWidth(text) > maxW && text.length > 3) {
-                        text = text.slice(0, -4) + '...';
-                    }
+        // Ejecución de la tabla inteligente
+        autoTable(pdf, {
+            startY: startY,
+            head: [['ITEM', 'CÓDIGO', 'DESCRIPCIÓN DEL ENSAYO', 'UND', 'CANT.', 'P. UNIT.', 'TOTAL']],
+            body: tableBody,
+            theme: 'plain',
+            styles: {
+                font: 'helvetica',
+                fontSize: 6.5,
+                textColor: negro,
+                cellPadding: 1.5,
+                lineColor: [220, 220, 220],
+                lineWidth: { bottom: 0.1 } // Líneas tenues separando filas
+            },
+            headStyles: {
+                fillColor: rojo,
+                textColor: [255, 255, 255],
+                fontStyle: 'bold',
+                valign: 'middle'
+            },
+            columnStyles: {
+                0: { cellWidth: 12, halign: 'left' },
+                1: { cellWidth: 20, halign: 'left' },
+                2: { cellWidth: 86, halign: 'left' }, // Textos largos harán salto de línea automático aquí
+                3: { cellWidth: 14, halign: 'left' },
+                4: { cellWidth: 14, halign: 'right' },
+                5: { cellWidth: 27, halign: 'right' },
+                6: { cellWidth: 27, halign: 'right' },
+            },
+            alternateRowStyles: {
+                fillColor: [252, 248, 248] // Filas intercaladas gris claro
+            },
+            // Margin top reservado para que cuando salte a una nueva hoja, no pise el encabezado
+            margin: { left: m, right: m, top: 25, bottom: 20 },
+            didDrawPage: (data) => {
+                // Si la tabla es muy larga y crea una nueva página, volvemos a dibujar el encabezado
+                if (data.pageNumber > 1) {
+                    this.dibujarHeader(pdf, m, w, logoSoiltest, logoIso, logoLean, formData, 'COTIZACIÓN');
                 }
-                pdf.text(text, tx, y + 3, { align: align === 'right' ? 'right' : 'left' });
-                xPos += cols[i];
-            });
-
-            pdf.setDrawColor(220, 220, 220);
-            pdf.setLineWidth(0.1);
-            pdf.line(m, y + 4.5, m + w, y + 4.5);
-            y += 5.5;
+            }
         });
 
-        // Cierre de tabla
+        // Obtener la posición Y exacta donde el plugin terminó de dibujar la tabla
+        let finalY = (pdf as any).lastAutoTable.finalY + 4;
+
+        // Línea roja de cierre visual de tabla
         pdf.setDrawColor(...rojo);
         pdf.setLineWidth(0.3);
-        pdf.line(m, y, m + w, y);
-        y += 4;
+        pdf.line(m, finalY - 4, m + w, finalY - 4);
 
-        // TOTALES
+        // --- VERIFICACIÓN CRÍTICA DE ESPACIO PARA TOTALES Y FOOTER ---
+        // Si no queda espacio en la hoja actual (al menos 11 cm) para las cuentas y firma, forzamos hoja nueva.
+        const espacioRequeridoFooter = 110; 
+        if (finalY > pageH - espacioRequeridoFooter) {
+            pdf.addPage();
+            finalY = this.dibujarHeader(pdf, m, w, logoSoiltest, logoIso, logoLean, formData, 'COTIZACIÓN');
+            finalY += 5; // Un pequeño margen antes de imprimir los totales
+        }
+
+        // ==================== DIBUJAR TOTALES ====================
         const subtotal = cotizacion.calcularSubtotal();
         const igv = cotizacion.calcularIGV();
-        const total = cotizacion.calcularTotal();
+        const total = totalCotizacion;
 
         const totalsX = m + w - 60;
 
         pdf.setFontSize(7);
         pdf.setFont('helvetica', 'normal');
         pdf.setTextColor(...negro);
-        pdf.text('SUBTOTAL:', totalsX, y);
-        pdf.text(`S/ ${subtotal.toFixed(2)}`, m + w - 2, y, { align: 'right' });
-        y += 4.5;
+        
+        pdf.text('SUBTOTAL S/.', totalsX, finalY);
+        pdf.text(`${subtotal.toFixed(2)}`, m + w - 2, finalY, { align: 'right' });
+        finalY += 4.5;
 
-        pdf.text('IGV (18%):', totalsX, y);
-        pdf.text(`S/ ${igv.toFixed(2)}`, m + w - 2, y, { align: 'right' });
-        y += 5;
+        // Descuento estático (Para futuro: conectarlo al modelo Cotizacion)
+        const descuento = typeof (cotizacion as any).calcularDescuento === 'function' ? (cotizacion as any).calcularDescuento() : 0;
+        pdf.text('DESCUENTO', totalsX, finalY);
+        pdf.text(`${descuento.toFixed(2)}`, m + w - 2, finalY, { align: 'right' });
+        finalY += 4.5;
+
+        pdf.text('IGV (18%)', totalsX, finalY);
+        pdf.text(`${igv.toFixed(2)}`, m + w - 2, finalY, { align: 'right' });
+        finalY += 5;
 
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(...rojo);
         pdf.setFontSize(9);
-        pdf.text('TOTAL:', totalsX, y);
-        pdf.text(`S/ ${total.toFixed(2)}`, m + w - 2, y, { align: 'right' });
+        pdf.text('TOTAL S/.', totalsX, finalY);
+        pdf.text(`${total.toFixed(2)}`, m + w - 2, finalY, { align: 'right' });
 
-        return y + 5;
+        return finalY + 5;
     }
 
-    // ==================== FOOTER (Flotante) ====================
-    private static dibujarFooterConFirma(pdf: jsPDF, m: number, w: number, pageH: number): void {
+    // ==================== FOOTER (Firma y Términos Breves) ====================
+    private static dibujarFooterConFirma(pdf: jsPDF, m: number, w: number, pageH: number, total: number): void {
         const rojo: [number, number, number] = [200, 0, 0];
         const negro: [number, number, number] = [0, 0, 0];
         const gris: [number, number, number] = [100, 100, 100];
 
-        // Se ubica flotante en la parte inferior de la hoja (No hay líneas de separación del header)
-        const firmaY = pageH - 40;
+        // BLOQUE SUPERIOR DEL FOOTER: Textos y términos
+        let y = pageH - 74; 
 
-        // Firma y sello
-        pdf.setFontSize(7);
+        // MONTO EN LETRAS
+        pdf.setFontSize(7.5);
         pdf.setFont('helvetica', 'bold');
-        pdf.setTextColor(...rojo);
-        pdf.text('FIRMA Y SELLO:', m + 2, firmaY + 5);
+        pdf.setTextColor(...negro);
+        const centavos = Math.round((total % 1) * 100).toString().padStart(2, '0');
+        const totalTexto = numeroALetras(total);
+        pdf.text(`SON: ${totalTexto} Y CON ${centavos}/100 SOLES`, m + 2, y);
 
-        pdf.setDrawColor(...negro);
-        pdf.setLineWidth(0.5);
-        pdf.line(m + 35, firmaY + 12, m + 85, firmaY + 12);
-
+        // BREVES TÉRMINOS
+        y += 4.5;
+        pdf.setFontSize(7);
         pdf.setFont('helvetica', 'normal');
-        pdf.setTextColor(...gris);
-        pdf.setFontSize(6);
-        pdf.text('Representante Legal', m + 45, firmaY + 16);
-        pdf.text('Huamanga, ' + new Date().toLocaleDateString('es-PE'), m + 45, firmaY + 19);
+        pdf.text('1. Los precios incluyen los impuestos de ley (IGV).', m + 2, y); y += 3.5;
+        pdf.text('2. La forma de pago es 50% al inicio y 50% a la entrega del informe final.', m + 2, y); y += 3.5;
+        pdf.setFont('helvetica', 'italic');
+        pdf.text('Nota: Si usted tiene alguna pregunta sobre esta cotización, por favor, póngase en contacto con nosotros.', m + 2, y); y += 5.5;
 
-        // Datos bancarios
-        const bancoY = firmaY + 5;
+        // IMPORTANTE
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('IMPORTANTE:', m + 2, y); y += 3.5;
+        pdf.setFont('helvetica', 'normal');
+        pdf.text('SE AVANZARÁ CON EL INFORME DEL PROYECTO UNA VEZ BRINDADA LA INFORMACIÓN SOLICITADA DENTRO', m + 4, y); y += 3.5;
+        pdf.text('DE LA FECHA DETERMINADA CASO CONTRARIO SE PARALIZARÁ EL PROYECTO.', m + 4, y); y += 3.5;
+        pdf.text('TODA SOLICITUD DE AVANCE DEL PROYECTO FUERA DE PLAZO DE EJECUCIÓN DE SERVICIO SERÁ CON', m + 4, y); y += 3.5;
+        pdf.text('LA CANCELACIÓN DEL 100%.', m + 4, y); y += 5;
+
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('Tiempo de entrega: 10 días hábiles', m + 2, y); y += 4;
+        pdf.setFont('helvetica', 'normal');
+        pdf.text('A continuación se detallan los números de cuenta:', m + 2, y);
+
+        // BLOQUE INFERIOR DEL FOOTER: Bancario y Contacto (Izquierda)
+        const bottomY = pageH - 22; // Posicionamiento en el límite inferior de la página
+        const leftX = m + 2;
+        
+        // Datos Bancarios
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(...rojo);
-        pdf.setFontSize(7);
-        pdf.text('DATOS BANCARIOS:', m + w / 2 + 10, bancoY);
-
+        pdf.text('DATOS BANCARIOS:', leftX, bottomY);
         pdf.setFont('helvetica', 'normal');
         pdf.setTextColor(...negro);
-        pdf.setFontSize(6);
-        pdf.text('Banco: BCP', m + w / 2 + 10, bancoY + 4);
-        pdf.text('Cta. Cte.: 191-12345678-0-99', m + w / 2 + 10, bancoY + 7.5);
-        pdf.text('CCI: 00219100123456780099', m + w / 2 + 10, bancoY + 11);
+        pdf.text('Banco: INTERBANK', leftX, bottomY + 4);
+        pdf.text('Cta: 4403002914544', leftX, bottomY + 7.5);
+        pdf.text('CCI: 00344000300291454455', leftX, bottomY + 11);
 
         // Contacto
         pdf.setFont('helvetica', 'bold');
         pdf.setTextColor(...rojo);
-        pdf.setFontSize(7);
-        pdf.text('CONTACTO:', m + w - 40, bancoY);
+        pdf.text('CONTACTO:', leftX + 60, bottomY);
         pdf.setFont('helvetica', 'normal');
         pdf.setTextColor(...negro);
+        pdf.text('soiltestperu.srl@gmail.com', leftX + 60, bottomY + 4);
+        
+        // Nueva dirección extendida (Debajo de bancos y contacto)
+        pdf.text('Dirección: AA. HH. COVADONGA MZ "T2" LT 04 - Distrito de Ayacucho - Huamanga - Ayacucho', leftX, bottomY + 16);
+
+        // Agradecimiento en letras muy pequeñas
+        pdf.setFont('helvetica', 'italic');
         pdf.setFontSize(6);
-        pdf.text('soiltestperu.srl@gmail.com', m + w - 40, bancoY + 4);
-        pdf.text('Ayacucho, Perú', m + w - 40, bancoY + 7.5);
+        pdf.setTextColor(...gris);
+        pdf.text('Gracias por hacer negocios con nosotros', leftX, bottomY + 20);
+
+        // ==================== FIRMA FLOTANTE ENCIMA DEL FOOTER ====================
+        const rightX = m + w - 60; // Área de firma alineada a la derecha
+        const firmaW = 50;
+        
+        // La firma se eleva por encima del nivel de los Datos Bancarios
+        const firmaLineY = bottomY - 13; 
+        
+        pdf.setDrawColor(...negro);
+        pdf.setLineWidth(0.3);
+        pdf.line(rightX, firmaLineY, rightX + firmaW, firmaLineY);
+
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(7);
+        pdf.setTextColor(...rojo);
+        // FIRMA se coloca justo por debajo de la línea
+        pdf.text('FIRMA', rightX + firmaW / 2, firmaLineY + 4, { align: 'center' });
+
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor(...gris);
+        pdf.setFontSize(6);
+        pdf.text('Representante Legal', rightX + firmaW / 2, firmaLineY + 7.5, { align: 'center' });
     }
 
     // ==================== TÉRMINOS (Arriba en Hoja 2) ====================
-    private static dibujarTerminos(pdf: jsPDF, m: number, w: number, pageH: number): void {
+    private static dibujarTerminos(pdf: jsPDF, m: number, w: number, startY: number, pageH: number): void {
         const negro: [number, number, number] = [0, 0, 0];
         const rojo: [number, number, number] = [200, 0, 0];
-        let y = m + 10; // Inicio arriba de todo en la hoja 2
-
-        pdf.setFontSize(12);
-        pdf.setFont('helvetica', 'bold');
-        pdf.setTextColor(...rojo);
-        pdf.text('TÉRMINOS Y CONDICIONES', m + w / 2, y, { align: 'center' });
-        y += 8;
+        let y = startY + 5; 
 
         pdf.setFontSize(7);
         pdf.setFont('helvetica', 'normal');
@@ -567,7 +668,7 @@ export default class ExportService {
         ];
 
         terminos.forEach(([titulo, contenido]) => {
-            if (y > pageH - 20) { // Si llega al fondo, crea otra hoja
+            if (y > pageH - 20) { 
                 pdf.addPage();
                 y = m + 15;
             }
